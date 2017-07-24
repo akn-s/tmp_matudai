@@ -22,8 +22,8 @@ if __name__ == "__main__":
         train_label = np.array([])
         test_data = np.empty((0,12),float)
         test_label = np.array([])
-        noise_nums = range(1,12)
-        level_nums = range(0,10)
+        noise_nums = list(range(1,12))
+        level_nums = list(range(1,10))
         random.shuffle(list(noise_nums))
 
         nfft = 2048  # FFTのサンプル数
@@ -31,7 +31,7 @@ if __name__ == "__main__":
 
         #鈴の音1
         for noise_num in noise_nums[0:10]:
-            random.shuffle(list(level_nums))
+            random.shuffle(level_nums)
             #学習用データを作成
             for level_num in level_nums[0:10]:
                 files_name = glob.glob("sounds/learning_samples/%d_%d_%d.wav" % (bell_num1,noise_num,level_num))
