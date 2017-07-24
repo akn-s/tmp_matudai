@@ -1,3 +1,5 @@
 .DS_Store
+src/__pycache__/*
+src/feature_data/*
 src/sounds/learning_samples/*
 !.gitkeep

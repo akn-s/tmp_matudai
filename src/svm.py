@@ -24,17 +24,17 @@ if __name__ == "__main__":
         test_label = np.array([])
         noise_nums = range(1,12)
         level_nums = range(0,10)
-        random.shuffle(noise_nums)
+        random.shuffle(list(noise_nums))
 
         nfft = 2048  # FFTのサンプル数
         nceps = 12   # MFCCの次元数
 
         #鈴の音1
         for noise_num in noise_nums[0:10]:
-            random.shuffle(level_nums)
+            random.shuffle(list(level_nums))
             #学習用データを作成
             for level_num in level_nums[0:10]:
-                files_name = glob.glob("learning_sample/%d_%d_%d.wav" % (bell_num1,noise_num,level_num))
+                files_name = glob.glob("sounds/learning_samples/%d_%d_%d.wav" % (bell_num1,noise_num,level_num))
                 for file_name in files_name:
                     feature = get_feature(file_name,nfft,nceps)
                     if len(train_data) == 0:
@@ -43,7 +43,7 @@ if __name__ == "__main__":
                         train_data=np.vstack((train_data,feature))
                     train_label=np.append(train_label,bell_num1)
             #テストデータを作成
-            file_name = "learning_sample/%d_%d_%d.wav" % (bell_num1,noise_num,level_nums[8])
+            file_name = "sounds/learning_samples/%d_%d_%d.wav" % (bell_num1,noise_num,level_nums[8])
             feature = get_feature(file_name,nfft,nceps)
             if len(test_data) == 0:
                 test_data=feature
@@ -53,10 +53,10 @@ if __name__ == "__main__":
 
         #鈴の音2
         for noise_num in noise_nums[0:10]:
-            random.shuffle(level_nums)
+            random.shuffle(list(level_nums))
             #学習用データを作成
             for level_num in level_nums[0:10]:
-                files_name = glob.glob("learning_sample/%d_%d_%d.wav" % (bell_num2,noise_num,level_num))
+                files_name = glob.glob("sounds/learning_samples/%d_%d_%d.wav" % (bell_num2,noise_num,level_num))
                 for file_name in files_name:
                     feature = get_feature(file_name,nfft,nceps)
                     if len(train_data) == 0:
@@ -65,7 +65,7 @@ if __name__ == "__main__":
                         train_data=np.vstack((train_data,feature))
                     train_label=np.append(train_label,bell_num2)
             #テストデータを作成
-            file_name = "learning_sample/%d_%d_%d.wav" % (bell_num2,noise_num,level_nums[8])
+            file_name = "sounds/learning_samples/%d_%d_%d.wav" % (bell_num2,noise_num,level_nums[8])
             feature = get_feature(file_name,nfft,nceps)
             if len(test_data) == 0:
                 test_data=feature
@@ -93,4 +93,4 @@ if __name__ == "__main__":
 
         #結果算出
         score=accuracy_score(test_label, test_pred)
-        print pair,score
+        print (pair,score)
