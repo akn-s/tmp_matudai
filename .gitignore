@@ -1,4 +1,3 @@
 .DS_Store
-src/sounds/*  
 src/sounds/learning_samples/*
 !.gitkeep
